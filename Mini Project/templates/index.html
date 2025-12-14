@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>OPD Simulation Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <div class="container">
+        <h1>📊 OPD Simulation Dashboard</h1>
+
+        <div class="summary-grid" id="summary">
+            <div class="card">
+                <div class="metric-icon">👥</div>
+                <h3>Total Patients</h3>
+                <div class="value" id="tp">Loading...</div>
+            </div>
+            <div class="card">
+                <div class="metric-icon">👨‍⚕️</div>
+                <h3>Number of Doctors</h3>
+                <div class="value" id="dc">Loading...</div>
+            </div>
+            <div class="card">
+                <div class="metric-icon">⏱️</div>
+                <h3>Avg Wait (Consult)</h3>
+                <div><span class="value" id="wc">-</span> <span class="unit">min</span></div>
+            </div>
+            <div class="card">
+                <div class="metric-icon">💊</div>
+                <h3>Avg Wait (Dispense)</h3>
+                <div><span class="value" id="wd">-</span> <span class="unit">min</span></div>
+            </div>
+            <div class="card">
+                <div class="metric-icon">🩺⏳</div>
+                <h3>Avg Consult Time</h3>
+                <div><span class="value" id="ct">-</span> <span class="unit">min</span></div>
+            </div>
+            <div class="card">
+                <div class="metric-icon">💉</div>
+                <h3>Avg Dispense Time</h3>
+                <div><span class="value" id="dt">-</span> <span class="unit">min</span></div>
+            </div>
+            <div class="card">
+                <div class="metric-icon">📉</div>
+                <h3>Doctor Utilization</h3>
+                <div><span class="value" id="doc_util">-</span> <span class="unit">%</span></div>
+            </div>
+            <div class="card">
+                <div class="metric-icon">📉</div>
+                <h3>Pharmacy Utilization</h3>
+                <div><span class="value" id="pharm_util">-</span> <span class="unit">%</span></div>
+            </div>
+        </div>
+
+        <div class="chart-grid">
+            <div class="chart-container">
+                <h2>📈 Consultation Wait Time Distribution</h2>
+                <canvas id="consultDistChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>📈 Dispensing Wait Time Distribution</h2>
+                <canvas id="dispenseDistChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>🕐 Average Process Times</h2>
+                <canvas id="comparisonChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>📊 Service vs Wait</h2>
+                <canvas id="serviceWaitChart"></canvas>
+            </div>
+            <div class="chart-container full-width">
+                <h2>⏱️ Patient Flow Timeline</h2>
+                <canvas id="timelineChart"></canvas>
+            </div>
+            <div class="chart-container full-width">
+                <h2>📉 Wait Time Trends</h2>
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+
+        <div class="table-container full-width">
+            <h2>📋 Simulation Logs (Detailed Patient Data)</h2>
+            <div class="table-wrapper">
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Arrival Time</th>
+                            <th>Doctor</th>
+                            <th>Consult Wait</th>
+                            <th>Consult Start</th>
+                            <th>Consult End</th>
+                            <th>Dispense Wait</th>
+                            <th>Dispense Start</th>
+                            <th>Dispense End</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
